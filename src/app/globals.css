@@ -167,7 +167,52 @@ h1, .heading-font{
   }
 
 
-  @media screen and (max-width: 480px) {
+
+
+
+
+
+
+
+
+
+
+
+.scroll-container {
+  overflow: hidden;
+  width: 100%;
+}
+
+.back-scroll,
+.front-scroll {
+  display: flex;
+  gap: 40px;
+  will-change: transform;
+  width: fit-content;
+  flex-wrap: nowrap;
+}
+.scroll-container img{
+
+  height: calc(100vh - 250px);
+  object-fit: contain;
+ width: auto;
+  flex-shrink: 0;
+
+}
+.scroll-container .back-scroll img{
+  max-height: calc(100vh - 350px);
+
+
+}
+
+
+
+
+
+
+
+
+  @media screen and (max-width: 768px) {
     
   .button-text {
     font-size: 14px;

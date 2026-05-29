@@ -71,9 +71,9 @@ export const Hero = () => {
             .from(
                 icon3Ref.current,
                 {
-                   y: 100,
-                opacity: 0,
-                duration: 1.2,
+                    y: 100,
+                    opacity: 0,
+                    duration: 1.2,
                 },
 
             )
@@ -82,8 +82,8 @@ export const Hero = () => {
                 opacity: 0,
                 duration: 1.2,
             }
-                   
-        )
+
+            )
             .from(
                 img3Ref.current,
                 {
@@ -117,10 +117,10 @@ export const Hero = () => {
         <>
             <section
                 ref={section1Ref}
-                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+                className="py-[60px] md:py-[100px] relative min-h-screen flex  flex-col items-center justify-center  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
             >
-                {/* Background Decorative Elements */}
-                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
+
+               
                     <Image
                         src="/shape1.png"
                         alt="Hero Image"
@@ -149,6 +149,9 @@ export const Hero = () => {
                         height={20}
                         className="absolute  w-[12px] md:w-[15px] h-[12px] md:h-[15px]  right-[20px] md:right-[40px]  bottom-[20px] md:bottom-[40px]"
                     />
+             
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center">
+
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
                         <h1
                             ref={headline1Ref}
@@ -172,11 +175,9 @@ export const Hero = () => {
             </section>
             <section
                 ref={section2Ref}
-                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+                className="py-[60px] md:py-[100px] relative min-h-screen flex  flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
             >
-                {/* Background Decorative Elements */}
-                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
-                    <Image
+                <Image
                         src="/shape1.png"
                         alt="Hero Image"
                         width={20}
@@ -204,6 +205,8 @@ export const Hero = () => {
                         height={20}
                         className="absolute  w-[12px] md:w-[15px] h-[12px] md:h-[15px]  right-[20px] md:right-[40px]  bottom-[20px] md:bottom-[40px]"
                     />
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center">
+                   
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
 
                         <h3
@@ -220,10 +223,10 @@ export const Hero = () => {
             </section>
             <section
                 ref={section3Ref}
-                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+                className="py-[60px] md:py-[100px] relative min-h-screen flex  flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
             >
                 {/* Background Decorative Elements */}
-                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center">
 
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
                         <Image
@@ -236,7 +239,7 @@ export const Hero = () => {
                         />
                         <h2
                             ref={headline3Ref}
-                            className=" max-w-4xl mx-auto text-3xl md:text-6xl  heading-font leading-snug text-gradient"
+                            className=" max-w-4xl mx-auto text-4xl md:text-6xl  heading-font leading-snug text-gradient"
                         >
                             Why settle for basic when you can be Simply Super?
                         </h2>
@@ -254,13 +257,13 @@ export const Hero = () => {
                         >
                             Ahead of you is a connected ecosystem built around social presence, intelligent systems, creator commerce, identity, and shared experiences. Every interaction inside Setup is designed to feel smoother, calmer, and more intentional — shaped by the choices people make, the communities they build, and the value they create together.
                         </p>
-                        <div className="pt-20"  ref={btn3Ref}>
-                            
-                             <AnimatedButton
-                            label="BEGIN YOUR JOURNEY"
-                            className="w-fit mx-auto"
-                           
-                        />
+                        <div className="pt-20" ref={btn3Ref}>
+
+                            <AnimatedButton
+                                label="BEGIN YOUR JOURNEY"
+                                className="w-fit mx-auto"
+
+                            />
                         </div>
 
                     </div>
