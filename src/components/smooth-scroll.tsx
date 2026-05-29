@@ -11,7 +11,7 @@ export const SmoothScroll = ({
   useEffect(() => {
     const lenis = new Lenis({
       lerp: 0.06, // lower = slower & smoother
-      wheelMultiplier: 0.6, // lower = slower wheel scroll
+      wheelMultiplier: 0.7, // lower = slower wheel scroll
       touchMultiplier: 1,
       smoothWheel: true,
     });

@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-import AnimatedButton from "@/components/AnimatedButton";
+
 
 
 export const MainSection = () => {
