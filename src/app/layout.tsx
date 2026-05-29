@@ -2,6 +2,8 @@ import "./globals.css";
 import { Metadata } from "next";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { Manrope } from "next/font/google";
+import BlobCursor from '@/components/BlobCursor';
+
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -24,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${manrope.variable} font-body`}>
+         <BlobCursor />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

@@ -1,84 +1,273 @@
 "use client";
-
+import Image from "next/image";
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "@/lib/gsap";
-import { ArrowRight } from "lucide-react";
+import AnimatedButton from "@/components/AnimatedButton";
+
 
 export const Hero = () => {
-  const container = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subheadlineRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
+    const section1Ref = useRef<HTMLElement>(null);
+    const section2Ref = useRef<HTMLElement>(null);
+    const section3Ref = useRef<HTMLElement>(null);
 
-  useGSAP(
-    () => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const headline1Ref = useRef<HTMLHeadingElement>(null);
+    const subtitle1Ref = useRef<HTMLHeadingElement>(null);
+    const desc1Ref = useRef<HTMLParagraphElement>(null);
 
-      tl.from(headlineRef.current, {
-        y: 100,
-        opacity: 0,
-        duration: 1.2,
-      })
-        .from(
-          subheadlineRef.current,
-          {
-            y: 40,
+    const headline2Ref = useRef<HTMLHeadingElement>(null);
+
+    const icon3Ref = useRef<HTMLImageElement>(null);
+
+    const headline3Ref = useRef<HTMLHeadingElement>(null);
+    const img3Ref = useRef<HTMLImageElement>(null);
+    const desc3Ref = useRef<HTMLParagraphElement>(null);
+    const btn3Ref = useRef<HTMLParagraphElement>(null);
+
+
+
+    useGSAP(() => {
+        gsap.timeline()
+            .from(headline1Ref.current, {
+                y: 100,
+                opacity: 0,
+                duration: 1.2,
+            })
+            .from(
+                subtitle1Ref.current,
+                {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                "-=0.6"
+            )
+            .from(
+                desc1Ref.current,
+                {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                "-=0.4"
+            );
+
+        gsap.from(headline2Ref.current, {
+            scrollTrigger: {
+                trigger: section2Ref.current,
+                start: "top 70%",
+            },
+            y: 100,
             opacity: 0,
             duration: 1,
-          },
-          "-=0.8"
+        });
+
+        gsap.timeline({
+            scrollTrigger: {
+                trigger: section3Ref.current,
+                start: "top 70%",
+            },
+        })
+            .from(
+                icon3Ref.current,
+                {
+                   y: 100,
+                opacity: 0,
+                duration: 1.2,
+                },
+
+            )
+            .from(headline3Ref.current, {
+                y: 100,
+                opacity: 0,
+                duration: 1.2,
+            }
+                   
         )
-        .from(
-          ctaRef.current,
-          {
-            y: 20,
-            opacity: 0,
-            duration: 0.8,
-          },
-          "-=0.6"
-        );
-    },
-    { scope: container }
-  );
+            .from(
+                img3Ref.current,
+                {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                "-=0.5"
+            )
+            .from(
+                desc3Ref.current,
+                {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                "-=0.5"
+            )
+            .from(
+                btn3Ref.current,
+                {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                },
+                "-=0.5"
+            );
+    });
 
-  return (
-    <section
-      ref={container}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4"
-    >
-      {/* Background Decorative Elements */}
-      <div className="absolute top-1/2 left-1/2 -z-10 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[120px]" />
-      <div className="absolute top-1/4 right-1/4 -z-10 h-[300px] w-[300px] rounded-full bg-purple-500/10 blur-[100px]" />
+    return (
+        <>
+            <section
+                ref={section1Ref}
+                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+            >
+                {/* Background Decorative Elements */}
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
+                    <Image
+                        src="/shape1.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[12px] md:w-[15px] h-[12px] md:h-[15px]  left-[20px] md:left-[40px]  top-[20px] md:top-[40px]"
+                    />
+                    <Image
+                        src="/shape2.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[15px] md:w-[20px] h-[15px] md:h-[20px]  right-[20px] md:right-[40px]  top-[20px] md:top-[40px]"
+                    />
+                    <Image
+                        src="/shape4.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[15px] md:w-[20px] h-[15px] md:h-[20px]  left-[20px] md:left-[40px]  bottom-[20px] md:bottom-[40px]"
+                    />
+                    <Image
+                        src="/shape3.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute  w-[12px] md:w-[15px] h-[12px] md:h-[15px]  right-[20px] md:right-[40px]  bottom-[20px] md:bottom-[40px]"
+                    />
+                    <div className="relative z-10 max-w-5xl text-center mx-auto">
+                        <h1
+                            ref={headline1Ref}
+                            className="text-5xl  md:text-6xl  text-white "
+                        >
+                            It’s 2026
+                        </h1>
+                        <h2 ref={subtitle1Ref} className="text-2xl md:text-[30px] pt-7 pb-2 text-gradient font-semibold">It’s already happening…</h2>
+                        <p
+                            ref={desc1Ref}
+                            className="mx-auto mt-3 max-w-3xl text-sm md:text-lg white-text"
+                        >
+                            If you feel a sudden surge of pure digital energy in the room, don't panic. That’s just the framework coming alive under the hood.
+                            <br />Stay tuned.
+                        </p>
 
-      <div className="relative z-10 max-w-5xl text-center">
-        <h1
-          ref={headlineRef}
-          className="text-5xl font-bold tracking-tight text-white sm:text-7xl md:text-8xl"
-        >
-          Building the Future <br />
-          <span className="text-blue-500">Super Network</span>
-        </h1>
-        <p
-          ref={subheadlineRef}
-          className="mx-auto mt-8 max-w-2xl text-lg text-zinc-400 sm:text-xl"
-        >
-          An ultra-fast, decentralized infrastructure for the next generation of 
-          internet applications. Scalable, secure, and built for everyone.
-        </p>
-        <div ref={ctaRef} className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <button className="group relative flex items-center gap-2 overflow-hidden rounded-full bg-white px-8 py-4 font-semibold text-black transition-all hover:pr-10 active:scale-95">
-            Get Started
-            <ArrowRight className="h-5 w-5 transition-all group-hover:translate-x-1" />
-          </button>
-          <button className="rounded-full border border-white/10 bg-white/5 px-8 py-4 font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 active:scale-95">
-            View Documentation
-          </button>
-        </div>
-      </div>
+                    </div>
+                </div>
 
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 -z-20 h-full w-full bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-    </section>
-  );
+
+            </section>
+            <section
+                ref={section2Ref}
+                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+            >
+                {/* Background Decorative Elements */}
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
+                    <Image
+                        src="/shape1.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[12px] md:w-[15px] h-[12px] md:h-[15px]  left-[20px] md:left-[40px]  top-[20px] md:top-[40px]"
+                    />
+                    <Image
+                        src="/shape2.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[15px] md:w-[20px] h-[15px] md:h-[20px]  right-[20px] md:right-[40px]  top-[20px] md:top-[40px]"
+                    />
+                    <Image
+                        src="/shape4.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute w-[15px] md:w-[20px] h-[15px] md:h-[20px]  left-[20px] md:left-[40px]  bottom-[20px] md:bottom-[40px]"
+                    />
+                    <Image
+                        src="/shape3.png"
+                        alt="Hero Image"
+                        width={20}
+                        height={20}
+                        className="absolute  w-[12px] md:w-[15px] h-[12px] md:h-[15px]  right-[20px] md:right-[40px]  bottom-[20px] md:bottom-[40px]"
+                    />
+                    <div className="relative z-10 max-w-5xl text-center mx-auto">
+
+                        <h3
+                            ref={headline2Ref}
+                            className="heading-font mx-auto mt-3 max-w-[700px] text-2xl md:text-3xl white-text"
+                        >
+                            Every interaction — from posting to engaging — contributes to your identity, your presence, and your ecosystem.
+                        </h3>
+
+                    </div>
+                </div>
+
+
+            </section>
+            <section
+                ref={section3Ref}
+                className="relative min-h-screen  overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+            >
+                {/* Background Decorative Elements */}
+                <div className="relative  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center min-h-screen">
+
+                    <div className="relative z-10 max-w-5xl text-center mx-auto">
+                        <Image
+                            ref={icon3Ref}
+                            src="/icon-only.png"
+                            alt="icon"
+                            width={70}
+                            height={70}
+                            className="mx-auto pb-3"
+                        />
+                        <h2
+                            ref={headline3Ref}
+                            className=" max-w-4xl mx-auto text-3xl md:text-6xl  heading-font leading-snug text-gradient"
+                        >
+                            Why settle for basic when you can be Simply Super?
+                        </h2>
+                        <Image
+                            ref={img3Ref}
+                            src="/underline.png"
+                            alt="underline"
+                            width={500}
+                            height={20}
+                            className="mx-auto py-8"
+                        />
+                        <p
+                            ref={desc3Ref}
+                            className="mx-auto  max-w-[980px] text-sm md:text-[16px] white-text"
+                        >
+                            Ahead of you is a connected ecosystem built around social presence, intelligent systems, creator commerce, identity, and shared experiences. Every interaction inside Setup is designed to feel smoother, calmer, and more intentional — shaped by the choices people make, the communities they build, and the value they create together.
+                        </p>
+                        <div className="pt-20"  ref={btn3Ref}>
+                            
+                             <AnimatedButton
+                            label="BEGIN YOUR JOURNEY"
+                            className="w-fit mx-auto"
+                           
+                        />
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </section>
+        </>
+    );
 };
