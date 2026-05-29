@@ -23,8 +23,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log("Contact API hit with body:", body);
-    
     if (!body) {
       return NextResponse.json(
         { success: false, message: "Request body is empty" },
@@ -36,7 +34,6 @@ export async function POST(req: NextRequest) {
     const result = contactSchema.safeParse(body);
     if (!result.success) {
       const firstError = result.error.issues[0]?.message || "Validation failed";
-      console.log("Validation failed:", firstError);
       return NextResponse.json(
         {
           success: false,
@@ -49,7 +46,6 @@ export async function POST(req: NextRequest) {
 
     const data = result.data;
     const enquiryId = generateEnquiryId();
-    console.log("Generated Enquiry ID:", enquiryId);
 
     // Check environment variables
     if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
@@ -62,11 +58,9 @@ export async function POST(req: NextRequest) {
 
     // Send Emails
     try {
-      console.log("Attempting to send emails...");
       await sendContactEmails(data, enquiryId);
-      console.log("Emails sent successfully!");
     } catch (emailError: any) {
-      console.error("Email sending failed detailed error:", emailError);
+      console.error("Email sending failed:", emailError);
       return NextResponse.json(
         {
           success: false,

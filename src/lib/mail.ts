@@ -103,7 +103,7 @@ export const getClientEmailTemplate = (data: ContactFormData, enquiryId: string)
 
 export const sendContactEmails = async (data: ContactFormData, enquiryId: string) => {
   const transporter = getTransporter();
-  
+
   const adminMailOptions = {
     from: `"SSN System" <${process.env.EMAIL_USER}>`,
     to: process.env.NOTIFICATION_EMAIL,
@@ -118,14 +118,9 @@ export const sendContactEmails = async (data: ContactFormData, enquiryId: string
     html: getClientEmailTemplate(data, enquiryId),
   };
 
-  console.log(`Dispatched emails for Enquiry ${enquiryId}`);
-  
   // Send both concurrently
-  const [adminResult, clientResult] = await Promise.all([
+  await Promise.all([
     transporter.sendMail(adminMailOptions),
     transporter.sendMail(clientMailOptions)
   ]);
-
-  console.log(`Admin email sent: ${adminResult.messageId}`);
-  console.log(`Client email sent: ${clientResult.messageId}`);
 };
