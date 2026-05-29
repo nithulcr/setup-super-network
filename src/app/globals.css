@@ -108,7 +108,7 @@ h1, .heading-font{
     text-transform: uppercase;
     justify-content: center;
     align-items: center;
-    padding: 18px 44px;
+    padding: 18px 50px;
 
     text-decoration: none;
     display: flex;
@@ -121,7 +121,7 @@ h1, .heading-font{
 .button:before{
   content: "";
   position: absolute;
-  left: 20px;
+  left: 25px;
   top: 50%;
   transform: translateY(-50%);
   width: 15px;
@@ -133,7 +133,7 @@ h1, .heading-font{
 .button:after{
   content: "";
   position: absolute;
-  right: 20px;
+  right: 25px;
   top: 50%;
   transform: translateY(-50%);
   width: 15px;
@@ -145,7 +145,7 @@ h1, .heading-font{
   .button-outline {
     background-color: var(--green);
     width: 100%;
-    padding: 18px 44px;
+    padding: 18px 50px;
     position: absolute;
     inset: 0%;
     transition: .3s;
@@ -197,10 +197,12 @@ h1, .heading-font{
   object-fit: contain;
  width: auto;
   flex-shrink: 0;
+  object-position: bottom;
+  min-width: 500px;
 
 }
 .scroll-container .back-scroll img{
-  max-height: calc(100vh - 350px);
+ height: calc(100vh - 350px);
 
 
 }
@@ -219,5 +221,8 @@ h1, .heading-font{
   }
   .button,  .button-outline{
     padding: 15px 44px;
+  }
+  .blob{
+    display: none!important;
   }
 }

@@ -25,7 +25,7 @@ export const MainSection = () => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: section3Ref.current,
-                start: "top 70%",
+                start: "top 80%",
             },
         })
             .from(icon3Ref.current, {
@@ -34,9 +34,9 @@ export const MainSection = () => {
                 duration: 1.2,
             })
             .from(headline3Ref.current, {
-                y: 100,
+                y: 70,
                 opacity: 0,
-                duration: 1.2,
+                duration: 1,
             });
 
 
@@ -74,7 +74,7 @@ export const MainSection = () => {
 
             <section
                 ref={section3Ref}
-                className="relative min-h-screen  overflow-hidden py-[60px] md:py-[100px] w-full"
+                className="relative min-h-screen  overflow-hidden pt-[60px] md:pt-[100px] w-full"
             >
                 {/* Background Decorative Elements */}
                 <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">

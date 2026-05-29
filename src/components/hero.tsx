@@ -55,7 +55,7 @@ export const Hero = () => {
         gsap.from(headline2Ref.current, {
             scrollTrigger: {
                 trigger: section2Ref.current,
-                start: "top 70%",
+                start: "top 80%",
             },
             y: 100,
             opacity: 0,
@@ -65,7 +65,7 @@ export const Hero = () => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: section3Ref.current,
-                start: "top 70%",
+                start: "top 80%",
             },
         })
             .from(
@@ -257,7 +257,7 @@ export const Hero = () => {
                         >
                             Ahead of you is a connected ecosystem built around social presence, intelligent systems, creator commerce, identity, and shared experiences. Every interaction inside Setup is designed to feel smoother, calmer, and more intentional — shaped by the choices people make, the communities they build, and the value they create together.
                         </p>
-                        <div className="pt-20" ref={btn3Ref}>
+                        <div className="pt-15 md:pt-[170px]" ref={btn3Ref}>
 
                             <AnimatedButton
                                 label="BEGIN YOUR JOURNEY"

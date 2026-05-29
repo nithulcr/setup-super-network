@@ -3,9 +3,16 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 
-export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
+export const SmoothScroll = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   useEffect(() => {
     const lenis = new Lenis({
+      lerp: 0.06, // lower = slower & smoother
+      wheelMultiplier: 0.6, // lower = slower wheel scroll
+      touchMultiplier: 1,
       smoothWheel: true,
     });
 
