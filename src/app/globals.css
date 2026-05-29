@@ -1,0 +1,15 @@
+@import "tailwindcss";
+:root {
+  --yellow: #FBE402;
+  --green: #34E500;
+}
+html,
+body {
+  background: #050505;
+  color: white;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body {
+  font-family: var(--font-manrope);
+}
