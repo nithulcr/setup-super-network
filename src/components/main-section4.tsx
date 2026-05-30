@@ -6,11 +6,11 @@ import { gsap } from "@/lib/gsap";
 
 
 
-export const MainSectioncopy = () => {
+export const MainSection4 = () => {
     const section3Ref = useRef<HTMLElement>(null);
 
     const headline3Ref = useRef<HTMLHeadingElement>(null);
-    const icon3Ref = useRef<HTMLImageElement>(null);
+  
 
     const backScrollRef = useRef<HTMLDivElement>(null);
     const frontScrollRef = useRef<HTMLDivElement>(null);
@@ -28,11 +28,7 @@ export const MainSectioncopy = () => {
                 start: "top 80%",
             },
         })
-            .from(icon3Ref.current, {
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-            })
+    
             .from(headline3Ref.current, {
                 y: 70,
                 opacity: 0,
@@ -74,25 +70,20 @@ export const MainSectioncopy = () => {
 
             <section
                 ref={section3Ref}
-                className="relative min-h-screen  overflow-hidden pt-[60px] md:pt-[100px] w-full"
+                className="relative min-h-screen  overflow-hidden py-[60px] md:py-[100px] w-full bg-white"
             >
                 {/* Background Decorative Elements */}
-                <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">
+                <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col   ">
 
-                    <div className="relative z-10 max-w-5xl text-center mx-auto">
-                        <Image
-                            ref={icon3Ref}
-                            src="/icon-only.png"
-                            alt="icon"
-                            width={70}
-                            height={70}
-                            className="mx-auto pb-3"
-                        />
+                    <div className="relative z-10 max-w-5xl">
+
+                        
                         <h2
                             ref={headline3Ref}
-                            className=" max-w-4xl mx-auto text-5xl md:text-8xl uppercase heading-font leading-snug text-gradient"
+                            className=" max-w-xl  text-5xl md:text-6xl uppercase heading-font leading-snug text-gradient"
                         >
-                            Setup Super Network
+                            JOIN THE
+                            SUPER’S
                         </h2>
 
 
@@ -100,32 +91,33 @@ export const MainSectioncopy = () => {
 
                     </div>
                 </div>
-                <div className="scroll-container2 relative overflow-hidden">
-                    <div ref={backScrollRef} className="top-scroll absolute bottom-0 flex">
+                <div className="scroll-container3 relative overflow-hidden">
+
+
+                    <div ref={frontScrollRef} className="scroll-row bottom-scroll relative flex">
                         {Array.from({ length: 15 }).map((_, i) => (
                             <Image
                                 key={i}
-                                src="/front-scroll.png"
+                                src="/member-card.png"
                                 alt=""
                                 width={1600}
                                 height={1600}
                                 className="shrink-0"
                             />
                         ))}
-
                     </div>
-
-                    <div ref={frontScrollRef} className="bottom-scroll relative flex">
+                    <div ref={backScrollRef} className="scroll-row top-scroll relative flex">
                         {Array.from({ length: 15 }).map((_, i) => (
                             <Image
                                 key={i}
-                                src="/back-scroll.png"
+                                src="/member-card.png"
                                 alt=""
                                 width={1600}
                                 height={1600}
                                 className="shrink-0"
                             />
                         ))}
+
                     </div>
                 </div>
 

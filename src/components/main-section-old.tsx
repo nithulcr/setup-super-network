@@ -6,7 +6,7 @@ import { gsap } from "@/lib/gsap";
 
 
 
-export const MainSection = () => {
+export const MainSectionOld = () => {
     const section3Ref = useRef<HTMLElement>(null);
 
     const headline3Ref = useRef<HTMLHeadingElement>(null);
@@ -17,67 +17,74 @@ export const MainSection = () => {
 
 
     useGSAP(() => {
+  // Heading animation
 
-
-
-
-
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: section3Ref.current,
-                start: "top 80%",
-            },
-        })
-            .from(icon3Ref.current, {
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-            })
-            .from(headline3Ref.current, {
-                y: 70,
-                opacity: 0,
-                duration: 1,
-            });
-
-
-
-
-
-
-        const marquee = (
-            element: HTMLDivElement,
-            direction: 1 | -1,
-            speed = 30
-        ) => {
-            const width = element.scrollWidth / 2;
-
-            gsap.fromTo(
-                element,
-                { x: direction === 1 ? -width : 0 },
-                {
-                    x: direction === 1 ? 0 : -width,
-                    duration: speed,
-                    ease: "none",
-                    repeat: -1,
-                }
-            );
-        };
-
-        marquee(backScrollRef.current!, 1, 70);
-        marquee(frontScrollRef.current!, -1, 70);
-
-
+  gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: section3Ref.current,
+        start: "top 80%",
+      },
+    })
+    .from(icon3Ref.current, {
+      y: 100,
+      opacity: 0,
+      duration: 1.2,
+    })
+    .from(headline3Ref.current, {
+      y: 70,
+      opacity: 0,
+      duration: 1,
     });
+
+  // Back layer moves RIGHT
+
+  gsap.fromTo(
+    backScrollRef.current,
+    {
+      x: -500,
+    },
+    {
+      x: 500,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section3Ref.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+    }
+  );
+
+  // Front layer moves LEFT
+
+  gsap.fromTo(
+    frontScrollRef.current,
+    {
+      x: 500,
+    },
+    {
+      x: -500,
+      ease: "none",
+      scrollTrigger: {
+        trigger: section3Ref.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+    }
+  );
+});
 
     return (
         <>
 
             <section
                 ref={section3Ref}
-                className="main-section relative h-full w-full overflow-hidden py-[60px] md:py-[100px]"
+                className="relative min-h-screen  overflow-hidden pt-[60px] md:pt-[100px] w-full"
             >
-       
-                <div className="relative  px-4  w-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">
+                {/* Background Decorative Elements */}
+                <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">
 
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
                         <Image
@@ -100,12 +107,12 @@ export const MainSection = () => {
 
                     </div>
                 </div>
-                <div className="scroll-container2  overflow-hidden absolute bottom-0 z-20 h-screen">
-                    <div ref={backScrollRef} className="top-scroll absolute bottom-0  flex">
-                        {Array.from({ length: 15 }).map((_, i) => (
+                <div className="scroll-container relative overflow-hidden">
+                    <div ref={backScrollRef} className="back-scroll absolute bottom-0 flex">
+                        {Array.from({ length: 3 }).map((_, i) => (
                             <Image
                                 key={i}
-                                src="/front-scroll.png"
+                                src="/back-scroll.png"
                                 alt=""
                                 width={1600}
                                 height={1600}
@@ -115,11 +122,11 @@ export const MainSection = () => {
 
                     </div>
 
-                    <div ref={frontScrollRef} className="bottom-scroll  absolute bottom-0 flex">
-                        {Array.from({ length: 15 }).map((_, i) => (
+                    <div ref={frontScrollRef} className="front-scroll relative flex">
+                        {Array.from({ length: 3 }).map((_, i) => (
                             <Image
                                 key={i}
-                                src="/back-scroll.png"
+                                src="/front-scroll.png"
                                 alt=""
                                 width={1600}
                                 height={1600}

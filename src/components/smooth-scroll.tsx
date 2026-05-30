@@ -10,11 +10,16 @@ export const SmoothScroll = ({
 }) => {
   useEffect(() => {
     const lenis = new Lenis({
-      lerp: 0.06, // lower = slower & smoother
-      wheelMultiplier: 0.7, // lower = slower wheel scroll
+      lerp: 0.06,
+      wheelMultiplier: 0.7,
       touchMultiplier: 1,
       smoothWheel: true,
     });
+
+    // Make lenis globally accessible for gated scrolling
+    if (typeof window !== "undefined") {
+      (window as any).lenis = lenis;
+    }
 
     function raf(time: number) {
       lenis.raf(time);

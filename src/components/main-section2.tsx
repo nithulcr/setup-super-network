@@ -29,54 +29,54 @@ export const MainSection2 = () => {
         gsap.timeline({
             scrollTrigger: {
                 trigger: section3Ref.current,
-                start: "top 80%",
+                start: "top top",
             },
         })
             .from(icon3Ref.current, {
                 y: 80,
                 opacity: 0,
-                duration: 1,
+                duration: 0.5,
             })
             .from(headline3Ref.current, {
                 y: 70,
                 opacity: 0,
-                duration: 1,
+                duration: 0.5,
             })
             .from(
                 subtitle1Ref.current,
                 {
                     y: 40,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 0.4,
                 },
-                "-=0.6"
+                "-=0.3"
             )
             .from(
                 desc1Ref.current,
                 {
                     y: 40,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 0.4,
                 },
-                "-=0.4"
+                "-=0.2"
             )
             .from(
                 signatureRef.current,
                 {
                     y: 40,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 0.4,
                 },
-                "-=0.4"
+                "-=0.2"
             )
             .from(
                 desc2Ref.current,
                 {
                     y: 40,
                     opacity: 0,
-                    duration: 0.8,
+                    duration: 0.4,
                 },
-                "-=0.4"
+                "-=0.2"
             );
 
 
@@ -89,10 +89,9 @@ export const MainSection2 = () => {
 
     return (
         <>
-
             <section
                 ref={section3Ref}
-                className="relative min-h-screen  overflow-hidden pt-[60px] md:pt-[100px] pb-[30px] md:pb-[50px] w-full flex  flex-col items-center justify-center gap-[140px]"
+                className="bg-black relative  h-screen overflow-hidden py-[60px] md:py-[100px] w-full flex flex-col items-center justify-center gap-[60px]"
             >
 
                 <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">
@@ -126,14 +125,14 @@ export const MainSection2 = () => {
                 <div className="relative  px-4  w-full h-full max-w-[1360px] mx-auto flex  flex-col items-center justify-center ">
 
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
-                        <Image
-                            ref={signatureRef}
-                            src="/signature.png"
-                            alt="icon"
-                            width={300}
-                            height={100}
-                            className="signature mx-auto pb-3"
-                        />
+                            <Image
+                                ref={signatureRef}
+                                src="/signature.png"
+                                alt="icon"
+                                width={300}
+                                height={100}
+                                className="signature mx-auto pb-3"
+                            />
 
                         <p
                             ref={desc2Ref}

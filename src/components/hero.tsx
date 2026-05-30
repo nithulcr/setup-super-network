@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import { gsap } from "@/lib/gsap";
+import { gsap, ScrollTrigger } from "@/lib/gsap";
 import AnimatedButton from "@/components/AnimatedButton";
 
 export const Hero = () => {
@@ -25,13 +25,30 @@ export const Hero = () => {
 
     useGSAP(() => {
         // Initial setup for Cross-Fade
-        // Slide 1 starts visible, Slide 2 starts hidden
         gsap.set(secondSlideRef.current, { autoAlpha: 0, scale: 1.05 });
         gsap.set(firstSlideRef.current, { autoAlpha: 1, scale: 1 });
 
+        // Robust Scroll Lock & Reset
+        if (typeof window !== "undefined") {
+            window.scrollTo(0, 0);
+            document.body.classList.add("no-scroll");
+            document.documentElement.classList.add("no-scroll");
+            document.body.classList.remove("show-smoke");
+            
+            // Stop Lenis multiple times to ensure it's caught
+            const stopLenis = () => {
+                if ((window as any).lenis) {
+                    (window as any).lenis.stop();
+                }
+            };
+            stopLenis();
+            const interval = setInterval(stopLenis, 100);
+            (window as any)._scrollLockInterval = interval;
+        }
+
         const mainTl = gsap.timeline();
 
-        // 1. Initial Entry Animation for the first slide content
+        // 1. Initial Entry Animation for Slide 1
         mainTl
             .from(headline1Ref.current, {
                 y: 60,
@@ -59,66 +76,62 @@ export const Hero = () => {
                 },
                 "-=0.4"
             )
-            // 2. Start the seamless cross-fade loop
+            // 2. Wait and then fade to second slide
+            .to({}, { duration: 3 }) // Slide 1 Display Time
+            .to(firstSlideRef.current, {
+                autoAlpha: 0,
+                scale: 0.95,
+                duration: 1.5,
+                ease: "power2.inOut"
+            })
+            .to(secondSlideRef.current, {
+                autoAlpha: 1,
+                scale: 1,
+                duration: 1.5,
+                ease: "power2.inOut"
+            }, "<")
+            .from(headline2Ref.current, {
+                y: 40,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            }, "-=0.8")
             .add(() => {
-                const loop = gsap.timeline({ repeat: -1 });
-
-                loop
-                    // Wait on Slide 1
-                    .to({}, { duration: 4 })
+                // Unlock scroll only after first slide changes to second slide and its content starts showing
+                if (typeof window !== "undefined") {
+                    document.body.classList.remove("no-scroll");
+                    document.documentElement.classList.remove("no-scroll");
                     
-                    // CROSS-FADE TRANSITION: 1 -> 2
-                    .to(firstSlideRef.current, {
-                        autoAlpha: 0,
-                        scale: 0.95,
-                        duration: 1.5,
-                        ease: "power2.inOut"
-                    })
-                    .to(secondSlideRef.current, {
-                        autoAlpha: 1,
-                        scale: 1,
-                        duration: 1.5,
-                        ease: "power2.inOut"
-                    }, "<") // Start at the same time for perfect cross-fade
-
-                    // Wait on Slide 2
-                    .to({}, { duration: 4 })
-
-                    // CROSS-FADE TRANSITION: 2 -> 1
-                    .to(secondSlideRef.current, {
-                        autoAlpha: 0,
-                        scale: 0.95,
-                        duration: 1.5,
-                        ease: "power2.inOut"
-                    })
-                    .to(firstSlideRef.current, {
-                        autoAlpha: 1,
-                        scale: 1,
-                        duration: 1.5,
-                        ease: "power2.inOut"
-                    }, "<");
+                    if ((window as any)._scrollLockInterval) {
+                        clearInterval((window as any)._scrollLockInterval);
+                    }
+                    
+                    if ((window as any).lenis) {
+                        (window as any).lenis.start();
+                    }
+                }
             });
 
-        // Section 3 ScrollTrigger Animations
-        gsap.timeline({
-            scrollTrigger: {
-                trigger: section3Ref.current,
-                start: "top 80%",
-            },
-        })
-            .from(icon3Ref.current, { y: 60, opacity: 0, duration: 1 })
-            .from(headline3Ref.current, { y: 60, opacity: 0, duration: 1 }, "-=0.7")
-            .from(img3Ref.current, { y: 30, opacity: 0, duration: 0.8 }, "-=0.5")
-            .from(desc3Ref.current, { y: 30, opacity: 0, duration: 0.8 }, "-=0.5")
-            .from(btn3Ref.current, { y: 30, opacity: 0, duration: 0.8 }, "-=0.5");
-            
-    }, { scope: section1Ref });
+        // Refresh ScrollTrigger after a short delay to account for any layout shifts
+        setTimeout(() => ScrollTrigger.refresh(), 1000);
+
+        // Cleanup: ensure scroll is restored if user navigates away mid-animation
+        return () => {
+            if (typeof window !== "undefined") {
+                document.body.classList.remove("no-scroll");
+                document.documentElement.classList.remove("no-scroll");
+                if ((window as any)._scrollLockInterval) {
+                    clearInterval((window as any)._scrollLockInterval);
+                }
+            }
+        };
+    }); // Removed scope: section1Ref
 
     return (
         <>
             <section
                 ref={section1Ref}
-                className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+                className="smokeCurso relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
             >
                 {/* Decorative Shapes */}
                 <Image src="/shape1.png" alt="shape" width={20} height={20} className="absolute w-[12px] md:w-[15px] left-[20px] md:left-[40px] top-[20px] md:top-[40px]" />
@@ -164,7 +177,7 @@ export const Hero = () => {
             {/* Section 3 */}
             <section
                 ref={section3Ref}
-                className="py-[60px] md:py-[100px] relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
+                className="smokeCurso third-screen py-[60px] md:py-[100px] relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 bg-[url('/bg.webp')] bg-cover bg-center w-full"
             >
                 <div className="relative w-full h-full max-w-[1360px] mx-auto flex flex-col items-center justify-center">
                     <div className="relative z-10 max-w-5xl text-center mx-auto">
@@ -177,7 +190,7 @@ export const Hero = () => {
                             Ahead of you is a connected ecosystem built around social presence, intelligent systems, creator commerce, identity, and shared experiences. Every interaction inside Setup is designed to feel smoother, calmer, and more intentional — shaped by the choices people make, the communities they build, and the value they create together.
                         </p>
                         <div className="pt-15 md:pt-[170px]" ref={btn3Ref}>
-                            <AnimatedButton label="BEGIN YOUR JOURNEY" className="w-fit mx-auto" />
+                            <AnimatedButton  href="/" label="BEGIN YOUR JOURNEY" className="w-fit mx-auto" />
                         </div>
                     </div>
                 </div>

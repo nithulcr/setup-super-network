@@ -15,8 +15,6 @@ export const MainSection3 = () => {
   const desc1Ref = useRef<HTMLParagraphElement>(null);
   const desc2Ref = useRef<HTMLParagraphElement>(null);
   const desc3Ref = useRef<HTMLParagraphElement>(null);
-  const phase3Ref = useRef<HTMLParagraphElement>(null);
-
 
   useGSAP(
     () => {
@@ -24,7 +22,7 @@ export const MainSection3 = () => {
       const textTl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top top",
+          start: "top 80%",
         },
       });
 
@@ -33,17 +31,15 @@ export const MainSection3 = () => {
         .from(headlineRef.current, { y: 70, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.6")
         .from(desc1Ref.current, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
         .from(desc2Ref.current, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
-        .from(desc3Ref.current, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4")
-        .from(phase3Ref.current, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4");
-
+        .from(desc3Ref.current, { y: 40, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.4");
 
       // 2. Sticky Screenshot Logic
       const screenshots = gsap.utils.toArray<HTMLElement>(".screenshot-item");
       const rows = gsap.utils.toArray<HTMLElement>(".row-trigger");
 
       // Initial state: hide all, show first
-      gsap.set(screenshots, { opacity: 0, });
-      gsap.set(screenshots[0], { opacity: 1,});
+      gsap.set(screenshots, { opacity: 0, scale: 0.96 });
+      gsap.set(screenshots[0], { opacity: 1, scale: 1 });
 
       // Pin the wrapper element
       ScrollTrigger.create({
@@ -61,12 +57,12 @@ export const MainSection3 = () => {
           start: "top 50%", // Trigger when row reaches center
           end: "bottom 50%",
           onEnter: () => {
-            gsap.to(screenshots, { opacity: 0,  duration: 0.5 });
-            gsap.to(screenshots[i], { opacity: 1,  duration: 0.5 });
+            gsap.to(screenshots, { opacity: 0, scale: 0.96, duration: 0.5 });
+            gsap.to(screenshots[i], { opacity: 1, scale: 1, duration: 0.5 });
           },
           onEnterBack: () => {
-            gsap.to(screenshots, { opacity: 0,  duration: 0.5 });
-            gsap.to(screenshots[i], { opacity: 1,  duration: 0.5 });
+            gsap.to(screenshots, { opacity: 0, scale: 0.96, duration: 0.5 });
+            gsap.to(screenshots[i], { opacity: 1, scale: 1, duration: 0.5 });
           },
         });
       });
@@ -102,7 +98,7 @@ export const MainSection3 = () => {
           </p>
         </div>
 
-        <div ref={phase3Ref} className="relative inline-flex items-center justify-center px-10 py-3 mb-20 rounded-full text-white bg-[#ffffff1a] border border-white/10 backdrop-blur-md shadow-[inset_0_1px_2px_rgba(255,255,255,0.4),0_0_40px_rgba(170,255,0,0.08)]">
+        <div className="relative inline-flex items-center justify-center px-10 py-3 mb-20 rounded-full text-white bg-[#ffffff1a] border border-white/10 backdrop-blur-md shadow-[inset_0_1px_2px_rgba(255,255,255,0.4),0_0_40px_rgba(170,255,0,0.08)]">
           PHASE:1
         </div>
 
