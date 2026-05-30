@@ -178,34 +178,106 @@ h1, .heading-font{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .scroll-container {
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .back-scroll,
 .front-scroll {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+}
+
+.back-scroll img,
+.front-scroll img {
+  flex-shrink: 0;
+  width: auto;
+  height: auto;
+  height: calc(100vh - 200px);
+}
+.back-scroll img{
+  height: calc(100vh - 300px);
+
+}
+.front-scroll {
+  position: relative;
+  z-index: 2;
+}
+
+.back-scroll {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+    align-items: end;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.scroll-container2 {
+  overflow: hidden;
+  width: 100%;
+}
+
+.top-scroll,
+.bottom-scroll {
   display: flex;
   gap: 40px;
   will-change: transform;
   width: fit-content;
   flex-wrap: nowrap;
 }
-.scroll-container img{
+.scroll-container2 img{
 
   height: calc(100vh - 250px);
   object-fit: contain;
  width: auto;
   flex-shrink: 0;
   object-position: bottom;
-  min-width: 500px;
+  min-width: 250px;
 
 }
-.scroll-container .back-scroll img{
+.scroll-container2 .top-scroll img{
  height: calc(100vh - 350px);
 
 
 }
+
+
+
+
+
 
 
 
@@ -225,4 +297,12 @@ h1, .heading-font{
   .blob{
     display: none!important;
   }
+.front-scroll img {
+
+  height: calc(100vh - 300px);
+}
+.back-scroll img{
+  height: calc(100vh - 360px);
+
+}
 }

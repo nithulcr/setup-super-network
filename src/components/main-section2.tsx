@@ -33,9 +33,9 @@ export const MainSection2 = () => {
             },
         })
             .from(icon3Ref.current, {
-                y: 100,
+                y: 80,
                 opacity: 0,
-                duration: 1.2,
+                duration: 1,
             })
             .from(headline3Ref.current, {
                 y: 70,

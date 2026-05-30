@@ -1,6 +1,8 @@
 import { Hero } from "@/components/hero";
 import { MainSection } from "@/components/main-section";
 import { MainSection2 } from "@/components/main-section2";
+import { MainSectioncopy } from "@/components/main-sectioncopy";
+
 
 
 
@@ -10,6 +12,8 @@ export default function Home() {
       <Hero />
       <MainSection />
       <MainSection2 />
+      <MainSectioncopy />
+
 
 
     </main>
