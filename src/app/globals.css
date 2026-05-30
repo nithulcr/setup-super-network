@@ -298,8 +298,14 @@ h1, .heading-font{
 
 
 
+.main-section3{
 
-
+  background:url(/glow.png);
+    background-repeat: no-repeat;
+    background-size: 1000px 1000px;
+    background-attachment: fixed;
+    background-position: center;
+}
 
 
 
