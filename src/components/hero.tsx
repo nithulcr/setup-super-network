@@ -159,7 +159,7 @@ export const Hero = () => {
                         >
                             It’s 2026
                         </h1>
-                        <h2 ref={subtitle1Ref} className="text-2xl md:text-[30px] pt-7 pb-2 text-gradient font-semibold">It’s already happening…</h2>
+                        <h2 ref={subtitle1Ref} className="text-2xl md:text-[30px] pt-7 pb-2 text-gradient2 font-semibold">It’s already happening…</h2>
                         <p
                             ref={desc1Ref}
                             className="mx-auto mt-3 max-w-3xl text-sm md:text-lg white-text"

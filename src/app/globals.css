@@ -4,6 +4,7 @@
   src: url("/fonts/setup-font.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 :root {
   --yellow: #FBE402;
@@ -24,9 +25,22 @@ body {
   color: var(--text);
 }
 h1, .heading-font{
-  font-family: "setup" , sans-serif;
+  font-family: "setup" , sans-serif !important;
 }
+
 .text-gradient{
+  background: linear-gradient(
+    90deg,
+    var(--green) 0%,
+    var(--yellow) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  line-height: .9;
+}
+.text-gradient2{
   background: linear-gradient(
     90deg,
     var(--yellow) 0%,
@@ -36,9 +50,8 @@ h1, .heading-font{
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
-  line-height: .9;
+  
 }
-
 
 
 
@@ -273,6 +286,15 @@ h1, .heading-font{
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 

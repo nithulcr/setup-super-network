@@ -112,7 +112,7 @@ export const MainSection2 = () => {
                         >
                             India’s First <br />Social Media App.
                         </h2>
-                        <h3 ref={subtitle1Ref} className="text-2xl md:text-[24px] pt-7 pb-2 text-gradient font-semibold">All in one App</h3>
+                        <h3 ref={subtitle1Ref} className="text-2xl md:text-[24px] pt-7 pb-2 text-gradient2 font-semibold">All in one App</h3>
                         <p
                             ref={desc1Ref}
                             className="mx-auto mt-3 max-w-2xl font-light text-[14px] white-text opacity-[80%]"
